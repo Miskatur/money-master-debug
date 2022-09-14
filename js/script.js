@@ -1,18 +1,18 @@
 const calculateExpense = () => {
-  const income = document.querySelector("income").value;
-  const food = document.querySelector("food").value;
-  const rent = document.querySelector("rent").value;
-  const clothes = document.querySelectorAll("clothes").value;
+  const income = document.getElementById("income").value;
+  const food = document.getElementById("food").value;
+  const rent = document.getElementById("rent").value;
+  const clothes = document.getElementById("clothes").value;
 
   if (
     income < 0 ||
-    income == "" ||
+    income === "" ||
     food < 0 ||
-    food == "" ||
+    food === "" ||
     rent < 0 ||
-    rent == "" ||
+    rent === "" ||
     clothes < 0 ||
-    clothes == ""
+    clothes === ""
   ) {
     alert("Inputs must be positive numbers");
     return;
@@ -22,9 +22,9 @@ const calculateExpense = () => {
     parseInt(food) + parseInt(rent) + parseInt(clothes);
 
   // calculate balance
-  const balance = parseInt(income.value) - expense;
+  const balance = parseInt(income) - expense;
   //   validate income
-  if (expense > income.value) {
+  if (expense > income) {
     alert("Expenses cannot be more than income");
   } else {
     // view total expense and balance
@@ -35,15 +35,17 @@ const calculateExpense = () => {
 
 const calculateSavings = () => {
   // calculate saving amount
-  const savePercentage = document.getElementById("save").value;
-//   Validate saving percentage value
+  const savePercentage = parseInt(document.getElementById("save").value);
+  const income = parseInt(document.getElementById("income").value);
+  //   Validate saving percentage value
   if (savePercentage < 0) {
     alert("Provide positive saving value");
   }
-  const savingAmount = (savePercentage / 100) + income;
+  const savingAmount = (savePercentage / 100) * income;
+  console.log(savingAmount)
 
   // calculate remaining balance
-  const balance = document.getElementById("balance").innerText;
+  const balance = parseInt(document.getElementById("balance").innerText);
   const remainingBalance = balance - savingAmount;
 
   //   validate saving amount
